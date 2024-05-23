@@ -1,5 +1,6 @@
-import { BloodtypeOutlinedIcon, AdbIcon } from '@mui/icons-material';
+import { MdOutlineBloodtype } from "react-icons/md";
+import { LuMenuSquare } from "react-icons/lu";
 export const Icons = {
-    BloodOutlined: BloodtypeOutlinedIcon,
-    Menu: AdbIcon
+    BloodOutlined: MdOutlineBloodtype,
+    MenuSquare: LuMenuSquare
 }
