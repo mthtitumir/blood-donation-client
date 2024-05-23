@@ -20,6 +20,11 @@ export const theme = createTheme({
                 maxWidth: "lg"
             }
         },
+        MuiStack: {
+            defaultProps: {
+                // direction: "row"
+            }
+        }
     },
     typography: {
         body1: {
