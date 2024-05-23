@@ -1,6 +1,10 @@
+import { Container, Typography } from "@mui/material"
+
 const RegisterPage = () => {
   return (
-    <div>RegisterPage</div>
+    <Container>
+      <Typography variant="h2" component="h1" fontWeight={600} color="primary.main" textAlign="center">Welcome</Typography>
+    </Container>
   )
 }
 

@@ -4,6 +4,7 @@ const assets = {
         blood_drop: require("./icons/blood_circle.png"),
         hero_banner: require("./images/Hero-Banner-Grad.png"),
         about_us_banner: require("./images/blood_hand.png"),
+        impact_banner: require("./images/our_impact_banner.jpg"),
     },
     social: {
         facebook: require("./social/facebook.png"),
