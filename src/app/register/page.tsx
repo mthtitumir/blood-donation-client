@@ -1,32 +1,18 @@
 "use client";
-import {
-  Box,
-  Button,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import assets from "@/assets";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
-// import { modifyPayload } from "@/utils/modifyPayload";
-// import { registerPatient } from "@/services/actions/registerPatient";
-// import { toast } from "sonner";
-// import { useRouter } from "next/navigation";
-// import { userLogin } from "@/services/actions/userLogin";
-// import { storeUserInfo } from "@/services/auth.services";
-// import PHForm from "@/components/Forms/PHForm";
-// import MyInput from "@/components/Forms/MyInput";
-import { z } from "zod";
+import { useRouter } from "next/navigation";
 import MyForm from "@/components/forms/MyForm";
 import MyInput from "@/components/forms/MyInput";
 import MySelect from "@/components/forms/MySelect";
 import MyDatePicker from "@/components/forms/MyDatePicker";
 import { FormatDate } from "@/utils/FormatDate";
 import { bloodGroups } from "@/constants";
+import { registerUser } from "@/services/serverActions/registerUser";
+import toast from "react-hot-toast";
+import { loginUser } from "@/services/serverActions/loginUser";
+import { storeUserInfo } from "@/services/auth.service";
 
 export const defaultValues = {
   name: "",
@@ -37,28 +23,28 @@ export const defaultValues = {
 };
 
 const RegisterPage = () => {
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
-    console.log({ values });
     values.lastDonationDate = FormatDate(values.lastDonationDate);
-    // try {
-    //   const res = await registerPatient(data);
-    //   // console.log(res);
-    //   if (res?.data?.id) {
-    //     toast.success(res?.message);
-    //     const result = await userLogin({
-    //       password: values.password,
-    //       email: values.patient.email,
-    //     });
-    //     if (result?.data?.accessToken) {
-    //       storeUserInfo({ accessToken: result?.data?.accessToken });
-    //       router.push("/dashboard");
-    //     }
-    //   }
-    // } catch (err: any) {
-    //   console.error(err.message);
-    // }
+    values.age = Number(values.age);
+    // console.log({ values });
+    try {
+      const res = await registerUser(values);
+      if (res?.data?.id) {
+        toast.success(res?.message);
+        const result = await loginUser({
+          password: values.password,
+          email: values.email,
+        });
+        if (result?.data?.accessToken) {
+          storeUserInfo({ accessToken: result?.data?.accessToken });
+          router.push("/profile");
+        }
+      }
+    } catch (err: any) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -86,8 +72,13 @@ const RegisterPage = () => {
             }}
           >
             <Box>
-              <Typography variant="h6" fontWeight={600}>
+              <Typography variant="h3" fontWeight={600} color="primary.main">
                 Welcome
+              </Typography>
+            </Box>
+            <Box>
+              <Typography variant="h6" fontWeight={500}>
+                Register now to donate or request for blood.
               </Typography>
             </Box>
           </Stack>

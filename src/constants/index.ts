@@ -8,3 +8,4 @@ export const bloodGroups = [
     "O_POSITIVE",
     "O_NEGATIVE"
 ];
+export const authKey = "accessToken";

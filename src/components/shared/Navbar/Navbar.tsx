@@ -18,7 +18,7 @@ const Navbar = () => {
           <Typography>Home</Typography>
           <Typography>About Us</Typography>
           <Typography>Profile</Typography> {/*if logged in*/}
-          <Typography>Find Blood</Typography>
+          <Typography component={Link} href="/donors">Find Blood</Typography>
           <Button component={Link} href="/login">
             Login
           </Button>{" "}

@@ -34,7 +34,7 @@ const MyDatePicker = ({
             <DesktopDatePicker
               label={label}
               timezone="system"
-              disablePast
+              // disablePast
               {...field}
               onChange={(date) => onChange(date)}
               value={value || Date.now()}
