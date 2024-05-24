@@ -23,38 +23,25 @@ import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { z } from "zod";
 import MyForm from "@/components/forms/MyForm";
 import MyInput from "@/components/forms/MyInput";
-// import { zodResolver } from "@hookform/resolvers/zod";
-
-export const patientValidationSchema = z.object({
-  name: z.string().min(1, "Please enter your name!"),
-  email: z.string().email("Please enter a valid email address!"),
-  contactNumber: z
-    .string()
-    .regex(/^\d{11}$/, "Please provide a valid phone number!"),
-  address: z.string().min(1, "Please enter your address!"),
-});
-
-export const validationSchema = z.object({
-  password: z.string().min(6, "Must be at least 6 characters"),
-  patient: patientValidationSchema,
-});
+import MySelect from "@/components/forms/MySelect";
+import MyDatePicker from "@/components/forms/MyDatePicker";
+import { FormatDate } from "@/utils/FormatDate";
+import { bloodGroups } from "@/constants";
 
 export const defaultValues = {
+  name: "",
+  email: "",
   password: "",
-  patient: {
-    name: "",
-    email: "",
-    contactNumber: "",
-    address: "",
-  },
+  age: 0,
+  location: "",
 };
 
 const RegisterPage = () => {
   // const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
-    // const data = modifyPayload(values);
-    console.log(values);
+    console.log({ values });
+    values.lastDonationDate = FormatDate(values.lastDonationDate);
     // try {
     //   const res = await registerPatient(data);
     //   // console.log(res);
@@ -87,7 +74,6 @@ const RegisterPage = () => {
           sx={{
             maxWidth: 600,
             width: "100%",
-            boxShadow: 1,
             borderRadius: 1,
             p: 4,
             textAlign: "center",
@@ -99,35 +85,28 @@ const RegisterPage = () => {
               alignItems: "center",
             }}
           >
-            {/* <Box>
-              <Image src={assets.svgs.logo} width={50} height={50} alt="logo" />
-            </Box> */}
             <Box>
               <Typography variant="h6" fontWeight={600}>
-                Patient Register
+                Welcome
               </Typography>
             </Box>
           </Stack>
 
           <Box>
-            <MyForm
-              onSubmit={handleRegister}
-              // resolver={zodResolver(validationSchema)}
-              defaultValues={defaultValues}
-            >
+            <MyForm onSubmit={handleRegister} defaultValues={defaultValues}>
               <Grid container spacing={2} my={1}>
-                <Grid item md={12}>
-                  <MyInput label="Name" fullWidth={true} name="patient.name" />
+                <Grid item xs={12}>
+                  <MyInput label="Name" fullWidth={true} name="name" />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item xs={12} sm={6}>
                   <MyInput
                     label="Email"
                     type="email"
                     fullWidth={true}
-                    name="patient.email"
+                    name="email"
                   />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item xs={12} sm={6}>
                   <MyInput
                     label="Password"
                     type="password"
@@ -135,20 +114,34 @@ const RegisterPage = () => {
                     name="password"
                   />
                 </Grid>
-                <Grid item md={6}>
+                <Grid item xs={12} sm={6}>
                   <MyInput
-                    label="Contact Number"
-                    type="tel"
+                    label="Age"
+                    type="number"
                     fullWidth={true}
-                    name="patient.contactNumber"
+                    name="age"
                   />
                 </Grid>
-                <Grid item md={6}>
-                  <MyInput
-                    label="Address"
+                <Grid item xs={12} sm={6}>
+                  <MySelect
+                    label="Blood Type"
+                    items={bloodGroups}
                     fullWidth={true}
-                    name="patient.address"
+                    name="bloodType"
                   />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <MyInput label="Location" fullWidth={true} name="location" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <MyDatePicker
+                    label="Last Donation"
+                    fullWidth={true}
+                    name="lastDonationDate"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <MyInput label="Bio" fullWidth={true} name="bio" />
                 </Grid>
               </Grid>
               <Button

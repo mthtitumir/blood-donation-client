@@ -4,6 +4,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/providers/Providers";
 import { ChildrenProps } from "@/types";
+import { Toaster } from "react-hot-toast";
 
 const roboto = Roboto({
   subsets: ["vietnamese"],
@@ -19,7 +20,10 @@ export default function RootLayout({ children }: ChildrenProps) {
     <Providers>
       <html lang="en">
         <body className={roboto.className}>
-          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+          <AppRouterCacheProvider>
+            <Toaster />
+            {children}
+          </AppRouterCacheProvider>
         </body>
       </html>
     </Providers>
