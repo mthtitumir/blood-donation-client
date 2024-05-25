@@ -119,8 +119,29 @@ const DonorDetailsPage = async ({ params }: TParamProps) => {
               borderRadius: 2,
             }}
           >
-            <Box>a</Box>
-            <Box>a</Box>
+            <Box>
+              <Typography variant="h6" component="h1" textAlign="center" my={1}>
+                Donation History
+              </Typography>
+              <Table>
+                <TableBody>
+                  {[1, 2, 3, 4].map((num) => (
+                    <TableRow
+                      key={num}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="td" align="left" sx={{padding: "10px 0"}}>
+                        Last Donation
+                      </TableCell>
+                      <TableCell component="td" align="right" sx={{padding: "10px 0"}}>
+                        {data.lastDonationDate? data.lastDonationDate : "-----"}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+            <Box mt={2} borderTop="1px solid #610834">a</Box>
           </Box>
         </Grid>
       </Grid>
