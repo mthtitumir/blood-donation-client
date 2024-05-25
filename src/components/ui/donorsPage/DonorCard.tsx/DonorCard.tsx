@@ -66,7 +66,7 @@ const DonorCard = ({ donor }: { donor: TUser }) => {
         </Box>
       </Box>
       <Box >
-        <Button fullWidth={true} sx={{borderRadius: "0 0 4px 4px"}}>Donor Details</Button>
+        <Button component={Link} href={`/donors/${donor?.id}`} fullWidth={true} sx={{borderRadius: "0 0 4px 4px"}}>Donor Details</Button>
       </Box>
     </Box>
   );
