@@ -1,43 +1,39 @@
-import MyInput from "@/components/forms/MyInput";
-import DonorCard from "@/components/ui/donorsPage/DonorCard.tsx/DonorCard";
+import DonorCard from "@/components/ui/donorsPage/DonorCard/DonorCard";
+import SearchAndFilters from "@/components/ui/donorsPage/SearchAndFilter/SearchAndFilters";
 import { Icons } from "@/icons";
-import { TUser } from "@/types";
-import {
-  Box,
-  Container,
-  Grid,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { TUserProfile } from "@/types";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 
-const DonorListPage = async () => {
+const DonorListPage = async ({ searchParams }: any) => {
+  const { bloodType, availability, searchTerm } = searchParams;
+
+  const queryParams = new URLSearchParams();
+  if (bloodType) queryParams.set("bloodType", bloodType);
+  if (availability) queryParams.set("availability", availability);
+  if (searchTerm) queryParams.set("searchTerm", searchTerm);
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor/donor-list`
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/user?${queryParams.toString()}`
   );
   const { data } = await res.json();
-  console.log(data);
 
   return (
     <Container>
       <Box>
-        <Stack direction="row" justifyContent="space-between">
-          <Typography variant="h5" component="h1" fontWeight={600}>
-            All Donors
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Typography variant="h6" component="h1" fontWeight={600}>
+            Donors
           </Typography>
-          <Box>
-            <TextField size="small" placeholder="Search donor" />
-          </Box>
-          <Stack direction="row">
-            <Box>
-              <Icons.FilterSquare />
-            </Box>
-          </Stack>
+          <SearchAndFilters />
         </Stack>
       </Box>
       <Box sx={{ flexGrow: 1, my: 3 }}>
         <Grid container spacing={2}>
-          {data.map((donor: TUser) => (
+          {data.map((donor: TUserProfile) => (
             <Grid key={donor.id} item xs={12} sm={4}>
               <DonorCard donor={donor} />
             </Grid>

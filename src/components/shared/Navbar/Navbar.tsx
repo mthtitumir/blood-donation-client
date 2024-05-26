@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { getUserInfo } from "@/services/auth.service";
 import { Box, Button, Container, Icon, Stack, Typography } from "@mui/material";
@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   const user = getUserInfo();
-  
+
   return (
     <Container>
       <Stack py={2} direction="row" justifyContent="space-between">
@@ -24,15 +24,9 @@ const Navbar = () => {
           <Typography component={Link} href="/donors">
             Find Blood
           </Typography>
-          {user ? (
-            <Button component={Link} href="/login">
-              Logout
-            </Button>
-          ) : (
-            <Button component={Link} href="/login">
-              Login
-            </Button>
-          )}
+          <Button component={Link} href="/login">
+            Login
+          </Button>
           {/*if not logged in*/}
         </Stack>
       </Stack>

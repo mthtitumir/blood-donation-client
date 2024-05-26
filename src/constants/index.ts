@@ -8,6 +8,9 @@ export const bloodGroups = [
     "O_POSITIVE",
     "O_NEGATIVE"
 ];
+
+export const availabilities = ["true", "false"];
+
 export const authKey = "accessToken";
 
 export const Role = {

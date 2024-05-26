@@ -1,10 +1,10 @@
 import { Icons } from "@/icons";
-import { TUser } from "@/types";
+import { TUserProfile } from "@/types";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
-const DonorCard = ({ donor }: { donor: TUser }) => {
+const DonorCard = ({ donor }: { donor: TUserProfile }) => {
   const placeholder =
     "https://static.vecteezy.com/system/resources/thumbnails/026/489/224/small_2x/muslim-malay-woman-doctor-in-hospital-with-copy-space-ai-generated-photo.jpg";
   const iconStyle = {
@@ -42,25 +42,25 @@ const DonorCard = ({ donor }: { donor: TUser }) => {
           <Box display="flex" gap={2} alignItems="center">
             <Icons.NameOutline style={iconStyle} />
             <Typography component="h1" fontWeight={600}>
-              {donor.name.toUpperCase()}
+              {donor?.name?.toUpperCase()}
             </Typography>
           </Box>
           <Box display="flex" gap={2} alignItems="center">
             <Icons.LocationFill style={iconStyle} />
             <Typography component="h1" fontWeight={400}>
-              {donor.location}
+              {donor?.location}
             </Typography>
           </Box>
           <Box display="flex" gap={2} alignItems="center">
             <Icons.BloodFill style={iconStyle} />
             <Typography component="h1" fontWeight={400}>
-              {donor.bloodType.toUpperCase()}
+              {donor?.bloodType?.toUpperCase()}
             </Typography>
           </Box>
           <Box display="flex" gap={2} alignItems="center">
             <Icons.Circle style={iconStyle} />
             <Typography component="h1" fontWeight={400}>
-              {donor.availability ? "Available" : "Not Available"}
+              {donor?.availability ? "Available" : "Not Available"}
             </Typography>
           </Box>
         </Box>
