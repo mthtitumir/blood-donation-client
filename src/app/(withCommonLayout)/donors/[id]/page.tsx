@@ -19,12 +19,12 @@ function createData(key: string, value: string | number) {
   return { key, value };
 }
 const DonorDetailsPage = async ({ params }: TParamProps) => {
+  console.log(params.id);
+  
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor/donor-list/${params?.id}`
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/user/${params?.id}`
   );
   const { data } = await res.json();
-  const newData = {...data, ...data?.userProfile};
-  console.log({newData});
   
   const rows = [
     createData("Name", data?.name),

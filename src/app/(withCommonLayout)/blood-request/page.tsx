@@ -1,7 +1,6 @@
 "use client";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
-import Link from "next/link";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import MyForm from "@/components/forms/MyForm";
 import MyInput from "@/components/forms/MyInput";
@@ -9,42 +8,34 @@ import MySelect from "@/components/forms/MySelect";
 import MyDatePicker from "@/components/forms/MyDatePicker";
 import { FormatDate } from "@/utils/FormatDate";
 import { bloodGroups } from "@/constants";
-import { registerUser } from "@/services/serverActions/registerUser";
 import toast from "react-hot-toast";
-import { loginUser } from "@/services/serverActions/loginUser";
-import { storeUserInfo } from "@/services/auth.service";
+import { bloodRequest } from "@/services/serverActions/bloodRequest";
 
-export const defaultValues = {
-  name: "",
-  email: "",
-  password: "",
-  age: 18,
-  location: "",
+const defaultValues = {
+  phoneNumber: "",
+  bloodType: "",
+  reason: "",
+  quantity: 450,
+  hospitalAddress: "",
+  hospitalName: "",
 };
 
 const BloodRequestPage = () => {
   const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
-    values.lastDonationDate = FormatDate(values.lastDonationDate);
-    values.age = Number(values.age);
-    // console.log({ values });
-    try {
-      const res = await registerUser(values);
-      if (res?.data?.id) {
-        toast.success(res?.message);
-        const result = await loginUser({
-          password: values.password,
-          email: values.email,
-        });
-        if (result?.data?.accessToken) {
-          storeUserInfo({ accessToken: result?.data?.accessToken });
-          router.push("/profile");
-        }
-      }
-    } catch (err: any) {
-      console.error(err.message);
-    }
+    values.dateOfDonation = FormatDate(values.dateOfDonation);
+    values.quantity = Number(values.quantity);
+    console.log({ values });
+    // try {
+    //   const res = await bloodRequest(values);
+    //   if (res?.data?.id) {
+    //     toast.success(res?.message);
+    //     router.push("/profile");
+    //   }
+    // } catch (err: any) {
+    //   console.error(err.message);
+    // }
   };
 
   return (
@@ -72,13 +63,13 @@ const BloodRequestPage = () => {
             }}
           >
             <Box>
-              <Typography variant="h3" fontWeight={600} color="primary.main">
+              {/* <Typography variant="h3" fontWeight={600} color="primary.main">
                 Welcome
-              </Typography>
+              </Typography> */}
             </Box>
             <Box>
               <Typography variant="h6" fontWeight={500}>
-                Register now to donate or request for blood.
+                Request For Blood
               </Typography>
             </Box>
           </Stack>
@@ -86,33 +77,6 @@ const BloodRequestPage = () => {
           <Box>
             <MyForm onSubmit={handleRegister} defaultValues={defaultValues}>
               <Grid container spacing={2} my={1}>
-                <Grid item xs={12}>
-                  <MyInput label="Name" fullWidth={true} name="name" />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <MyInput
-                    label="Email"
-                    type="email"
-                    fullWidth={true}
-                    name="email"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <MyInput
-                    label="Password"
-                    type="password"
-                    fullWidth={true}
-                    name="password"
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <MyInput
-                    label="Age"
-                    type="number"
-                    fullWidth={true}
-                    name="age"
-                  />
-                </Grid>
                 <Grid item xs={12} sm={6}>
                   <MySelect
                     label="Blood Type"
@@ -122,17 +86,38 @@ const BloodRequestPage = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <MyInput label="Location" fullWidth={true} name="location" />
+                  <MyInput label="Quantity(ML)" fullWidth={true} name="quantity" />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <MyInput
+                    label="Phone Number"
+                    fullWidth={true}
+                    name="phoneNumber"
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <MyDatePicker
-                    label="Last Donation"
+                    label="Donation Date"
                     fullWidth={true}
-                    name="lastDonationDate"
+                    name="dateOfDonation"
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <MyInput label="Bio" fullWidth={true} name="bio" />
+                  <MyInput
+                    label="Hospital Name"
+                    fullWidth={true}
+                    name="hospitalName"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <MyInput
+                    label="Hospital Address"
+                    fullWidth={true}
+                    name="hospitalAddress"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <MyInput label="Reason" fullWidth={true} name="reason" />
                 </Grid>
               </Grid>
               <Button
@@ -142,11 +127,8 @@ const BloodRequestPage = () => {
                 fullWidth={true}
                 type="submit"
               >
-                Register
+                Sent Request
               </Button>
-              <Typography component="p" fontWeight={300}>
-                Already have an account? <Link href="/login">Login</Link>
-              </Typography>
             </MyForm>
           </Box>
         </Box>
