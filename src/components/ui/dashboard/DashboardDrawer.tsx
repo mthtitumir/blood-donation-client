@@ -39,7 +39,6 @@ export default function DashboardDrawer({
   };
 
   const { data, isLoading } = useGetMeQuery({});
-  // console.log(data);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -145,7 +144,8 @@ export default function DashboardDrawer({
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          p: 1,
+          mt: 4,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >

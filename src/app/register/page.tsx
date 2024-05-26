@@ -13,11 +13,6 @@ import { registerUser } from "@/services/serverActions/registerUser";
 import toast from "react-hot-toast";
 import { loginUser } from "@/services/serverActions/loginUser";
 import { storeUserInfo } from "@/services/auth.service";
-import { useCreateUserMutation } from "@/redux/features/user/userApi";
-import { useLoginMutation } from "@/redux/features/auth/authApi";
-import { verifyToken } from "@/utils/jwt";
-import { useDispatch } from "react-redux";
-import { setUser } from "@/redux/features/auth/authSlice";
 import { TUser } from "@/types";
 
 export const defaultValues = {
@@ -30,26 +25,27 @@ export const defaultValues = {
 
 const RegisterPage = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const [createUser] = useCreateUserMutation();
-  const [loginUser] = useLoginMutation();
 
   const handleRegister = async (values: FieldValues) => {
     values.lastDonationDate = FormatDate(values.lastDonationDate);
     values.age = Number(values.age);
     // console.log({ values });
     try {
-      const res = await createUser(values).unwrap();
-      console.log(res);
-      if (res.data && res.data.id) {
-        const resLogin = await loginUser({ email: values?.email, password: values?.password }).unwrap();
-        const user =  verifyToken(resLogin.data.accessToken) as TUser;
-        dispatch(setUser({ user, token: res.data.accessToken }));
-        router.push(`/`);
-        toast.success("User registered successfully!");
+      const res = await registerUser(values);
+      // console.log(res);
+      if (res?.data?.id) {
+        toast.success(res?.message);
+        const result = await loginUser({
+          password: values.password,
+          email: values.patient.email,
+        });
+        if (result?.data?.accessToken) {
+          storeUserInfo({ accessToken: result?.data?.accessToken });
+          router.push("/dashboard");
+        }
       }
-    } catch (error) {
-      toast.error("Registration failed!");
+    } catch (err: any) {
+      toast.error(err.message);
     }
   };
 

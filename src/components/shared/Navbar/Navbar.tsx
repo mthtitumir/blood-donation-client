@@ -1,13 +1,12 @@
 "use client"
 
-import { Icons } from "@/icons";
-import { useCurrentUser } from "@/redux/features/auth/authSlice";
-import { useAppSelector } from "@/redux/hooks";
+import { getUserInfo } from "@/services/auth.service";
 import { Box, Button, Container, Icon, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 
 const Navbar = () => {
-  const user = useAppSelector(useCurrentUser);
+  const user = getUserInfo();
+  
   return (
     <Container>
       <Stack py={2} direction="row" justifyContent="space-between">

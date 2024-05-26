@@ -6,12 +6,11 @@ import { UserRole } from "@/types";
 import { useEffect, useState } from "react";
 import { DrawerItems } from "@/utils/DrawerItems";
 import SidebarItem from "./SidebarItem";
-import { useAppSelector } from "@/redux/hooks";
-import { useCurrentUser } from "@/redux/features/auth/authSlice";
+import { getUserInfo } from "@/services/auth.service";
 
 const DashboardSideBar = () => {
   const [userRole, setUserRole] = useState<string | undefined>(undefined);
-  const user = useAppSelector(useCurrentUser);
+  const user = getUserInfo();
   useEffect(() => {
     setUserRole(user?.role);
   }, [user]);
