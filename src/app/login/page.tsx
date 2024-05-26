@@ -10,22 +10,31 @@ import toast from "react-hot-toast";
 import { storeUserInfo } from "@/services/auth.service";
 import MyForm from "@/components/forms/MyForm";
 import MyInput from "@/components/forms/MyInput";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
+import { verifyToken } from "@/utils/jwt";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { TUser } from "@/types";
 
 const LoginPage = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [loginUser] = useLoginMutation();
 
   const handleLogin = async (values: FieldValues) => {
     // console.log(values);
     try {
-      const res = await loginUser(values);
-      if (res?.data?.accessToken) {
-        toast.success(res?.message);
-        storeUserInfo({ accessToken: res?.data?.accessToken });
-        // router.push("/dashboard");
-      } else {
-        toast.error(res?.message);
+      const resLogin = await loginUser({ email: values?.email, password: values?.password }).unwrap();
+      console.log({resLogin});
+      if (resLogin.data && resLogin.data.accessToken) {
+        const user =  verifyToken(resLogin.data.accessToken) as TUser;
+        dispatch(setUser({ user, token: resLogin.data.accessToken }));
+        router.push(`/`);
+        toast.success("Logged in successfully!");
       }
-    } catch (err: any) {
-      console.error(err.message);
+    } catch (error) {
+      toast.error("Login failed!");
     }
   };
 

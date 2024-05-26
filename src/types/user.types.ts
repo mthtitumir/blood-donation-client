@@ -1,7 +1,12 @@
+import { Role } from "@/constants";
+import { IconType } from "react-icons/lib";
+// import { SvgIconTypeMap } from "@mui/material";
+// import { OverridableComponent } from "@mui/material/OverridableComponent";
+
 export type TUser = {
     id: string;
     email: string;
-    role: Role;
+    role: UserRole;
 }
 
 export type TUserProfile = {
@@ -19,12 +24,15 @@ export type TUserProfile = {
     user: TUser;
 }
 
-enum Role {
-    SUPER_ADMIN = "SUPER_ADMIN",
-    ADMIN = "ADMIN",
-    MODERATOR = "MODERATOR",
-    USER = "USER"
-}
+export interface DrawerItem {
+    title: string;
+    path: string;
+    parentPath?: string;
+    icon?: IconType;
+    child?: DrawerItem[];
+  }
+
+export type UserRole = keyof typeof Role;
 
 enum BloodGroup {
     A_POSITIVE = "A_POSITIVE",

@@ -86,6 +86,7 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          border: "1px solid lightgray"
         }}
       >
         <Toolbar>
@@ -99,7 +100,7 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
             <Icons.MenuSquare />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            Name
           </Typography>
         </Toolbar>
       </AppBar>

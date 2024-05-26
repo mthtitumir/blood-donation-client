@@ -9,3 +9,10 @@ export const bloodGroups = [
     "O_NEGATIVE"
 ];
 export const authKey = "accessToken";
+
+export const Role = {
+    SUPER_ADMIN : "SUPER_ADMIN",
+    ADMIN : "ADMIN",
+    MODERATOR : "MODERATOR",
+    USER : "USER"
+}

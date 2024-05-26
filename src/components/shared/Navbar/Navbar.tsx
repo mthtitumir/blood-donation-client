@@ -1,8 +1,13 @@
+"use client"
+
 import { Icons } from "@/icons";
+import { useCurrentUser } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/hooks";
 import { Box, Button, Container, Icon, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 
 const Navbar = () => {
+  const user = useAppSelector(useCurrentUser);
   return (
     <Container>
       <Stack py={2} direction="row" justifyContent="space-between">
@@ -17,10 +22,18 @@ const Navbar = () => {
           <Typography>Home</Typography>
           <Typography>About Us</Typography>
           <Typography>Profile</Typography> {/*if logged in*/}
-          <Typography component={Link} href="/donors">Find Blood</Typography>
-          <Button component={Link} href="/login">
-            Login
-          </Button>{" "}
+          <Typography component={Link} href="/donors">
+            Find Blood
+          </Typography>
+          {user ? (
+            <Button component={Link} href="/login">
+              Logout
+            </Button>
+          ) : (
+            <Button component={Link} href="/login">
+              Login
+            </Button>
+          )}
           {/*if not logged in*/}
         </Stack>
       </Stack>
