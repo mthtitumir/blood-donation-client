@@ -1,5 +1,4 @@
 import { Icons } from "@/icons";
-import { mercury, noColor } from "@/styles";
 import {
   Box,
   Button,
@@ -24,13 +23,16 @@ const DonorDetailsPage = async ({ params }: TParamProps) => {
     `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/donor/donor-list/${params?.id}`
   );
   const { data } = await res.json();
+  const newData = {...data, ...data?.userProfile};
+  console.log({newData});
+  
   const rows = [
-    createData("Name", data.name),
-    createData("Email", data.email),
-    createData("Blood Group", data.bloodType),
-    createData("Age", data.age),
-    createData("Location", data.location),
-    createData("Last Donation", data.lastDonationDate),
+    createData("Name", data?.name),
+    createData("Email", data?.email),
+    createData("Blood Group", data?.bloodType),
+    createData("Age", data?.age),
+    createData("Location", data?.location),
+    createData("Last Donation", data?.lastDonationDate),
   ];
   return (
     <Container>
@@ -134,7 +136,7 @@ const DonorDetailsPage = async ({ params }: TParamProps) => {
                         Last Donation
                       </TableCell>
                       <TableCell component="td" align="right" sx={{padding: "10px 0"}}>
-                        {data.lastDonationDate? data.lastDonationDate : "-----"}
+                        {data?.userProfile?.lastDonationDate? data.userProfile.lastDonationDate : "-----"}
                       </TableCell>
                     </TableRow>
                   ))}

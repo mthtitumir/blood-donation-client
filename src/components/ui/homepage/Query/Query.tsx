@@ -14,6 +14,8 @@ const Query = () => {
     <Container sx={{ my: 8 }}>
       <Grid container alignItems="center" justifyContent="space-evenly">
         <Grid
+          container
+          item
           display="flex"
           direction="column"
           gap={3}
@@ -30,6 +32,8 @@ const Query = () => {
           </Typography>
         </Grid>
         <Grid
+          container
+          item
           display="flex"
           direction="column"
           gap={3}
@@ -46,6 +50,8 @@ const Query = () => {
           </Typography>
         </Grid>
         <Grid
+          container
+          item
           display="flex"
           direction="column"
           gap={3}
@@ -62,6 +68,8 @@ const Query = () => {
           </Typography>
         </Grid>
         <Grid
+          container
+          item
           display="flex"
           direction="column"
           gap={3}
@@ -78,6 +86,8 @@ const Query = () => {
           </Typography>
         </Grid>
         <Grid
+          container
+          item
           display="flex"
           direction="column"
           gap={3}
@@ -94,6 +104,8 @@ const Query = () => {
           </Typography>
         </Grid>
         <Grid
+          container
+          item
           display="flex"
           direction="column"
           gap={3}

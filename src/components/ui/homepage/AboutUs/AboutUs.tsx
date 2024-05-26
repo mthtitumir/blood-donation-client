@@ -7,6 +7,7 @@ const AboutUs = () => {
     <Container>
       <Grid container alignItems="center" my={5}>
         <Grid
+          item
           xs={12}
           sm={8}
           container
@@ -49,7 +50,7 @@ const AboutUs = () => {
             <Button>More Info</Button>
           </Box>
         </Grid>
-        <Grid xs={12} sm={4}>
+        <Grid item xs={12} sm={4}>
           <Box
             sx={{
               display: "flex",

@@ -17,15 +17,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
-    <Providers>
-      <html lang="en">
-        <body className={roboto.className}>
+    <html lang="en">
+      <body className={roboto.className}>
+        <Providers>
           <AppRouterCacheProvider>
             <Toaster />
             {children}
           </AppRouterCacheProvider>
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   );
 }

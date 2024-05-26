@@ -10,7 +10,7 @@ const HeroSection = () => {
       }}
     >
       <Grid container>
-        <Grid xs={12} sm={8}>
+        <Grid item xs={12} sm={8}>
           <Image
             width={800}
             height={820}
@@ -19,6 +19,7 @@ const HeroSection = () => {
           />
         </Grid>
         <Grid
+          item
           xs={12}
           sm={4}
           sx={{

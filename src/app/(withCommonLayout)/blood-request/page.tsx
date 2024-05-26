@@ -22,7 +22,7 @@ export const defaultValues = {
   location: "",
 };
 
-const RegisterPage = () => {
+const BloodRequestPage = () => {
   const router = useRouter();
 
   const handleRegister = async (values: FieldValues) => {
@@ -155,4 +155,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default BloodRequestPage;
