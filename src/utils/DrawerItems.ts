@@ -9,13 +9,23 @@ export const DrawerItems = (role: UserRole): DrawerItem[] => {
    const defaultMenus = [
       {
          title: 'Profile',
-         path: `${role}/profile`,
+         path: `profile`,
+         icon: Icons.Profile,
+      },
+      {
+         title: 'My Blood Requests',
+         path: `my-requests`,
+         icon: Icons.BloodFill,
+      },
+      {
+         title: 'Requests To Me',
+         path: `requests-to-me`,
          icon: Icons.DonateBlood,
       },
       {
          title: 'Change Password',
          path: `change-password`,
-         icon: Icons.DonateBlood,
+         icon: Icons.Password,
       },
    ];
 
@@ -23,14 +33,14 @@ export const DrawerItems = (role: UserRole): DrawerItem[] => {
       case Role.SUPER_ADMIN:
          roleMenus.push(
             {
-               title: 'Dashboard',
-               path: `${role}`,
-               icon: Icons.DonateBlood,
+               title: 'All Blood Requests',
+               path: `all-requests`,
+               icon: Icons.DropDouble,
             },
             {
                title: 'Manage Users',
-               path: `${role}/manage-users`,
-               icon: Icons.DonateBlood,
+               path: `manage-users`,
+               icon: Icons.Users,
             }
          );
          break;
@@ -38,66 +48,30 @@ export const DrawerItems = (role: UserRole): DrawerItem[] => {
       case Role.ADMIN:
          roleMenus.push(
             {
-               title: 'Dashboard',
-               path: `${role}`,
-               icon: Icons.DonateBlood,
+               title: 'All Blood Requests',
+               path: `all-requests`,
+               icon: Icons.DropDouble,
             },
             {
-               title: 'Specialties',
-               path: `${role}/specialties`,
-               icon: Icons.DonateBlood,
-            },
-            {
-               title: 'Doctors',
-               path: `${role}/doctors`,
-               icon: Icons.DonateBlood,
-            },
+               title: 'Manage Users',
+               path: `manage-users`,
+               icon: Icons.Users,
+            }
          );
          break;
 
       case Role.MODERATOR:
          roleMenus.push(
             {
-               title: 'Dashboard',
-               path: `${role}`,
-               icon: Icons.DonateBlood,
+               title: 'All Blood Requests',
+               path: `all-requests`,
+               icon: Icons.DropDouble,
             },
-            {
-               title: 'Schedules',
-               path: `${role}/schedules`,
-               icon: Icons.DonateBlood,
-            },
-            {
-               title: 'Appointments',
-               path: `${role}/appointment`,
-               icon: Icons.DonateBlood,
-            }
          );
          break;
-
-      case Role.USER:
-         roleMenus.push(
-            {
-               title: 'Appointments',
-               path: `${role}/appointments`,
-               icon: Icons.DonateBlood,
-            },
-            {
-               title: 'Prescriptions',
-               path: `${role}/prescriptions`,
-               icon: Icons.DonateBlood,
-            },
-            {
-               title: 'Payment History',
-               path: `${role}/payment-history`,
-               icon: Icons.DonateBlood,
-            }
-         );
-         break;
-
       default:
          break;
    }
 
-   return [...roleMenus, ...defaultMenus];
+   return [...defaultMenus, ...roleMenus];
 };

@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { Avatar, Badge, Stack } from "@mui/material";
 import { Icons } from "@/icons";
-import { ChildrenProps } from "@/types";
+import DashboardSideBar from "./DashboardSidebar";
+import { useGetMeQuery } from "@/redux/features/user/userApi";
 
 const drawerWidth = 240;
 
-export default function DashboardDrawer({ children }: ChildrenProps) {
+export default function DashboardDrawer({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
@@ -38,45 +38,8 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
     }
   };
 
-  const drawer = (
-    <div>
-      <Toolbar />
-      <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <Icons.NotificationOutline />
-                ) : (
-                  <Icons.MenuSquare />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <Icons.NotificationOutline />
-                ) : (
-                  <Icons.MenuSquare />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const { data, isLoading } = useGetMeQuery({});
+  // console.log(data);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -86,7 +49,10 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          border: "1px solid lightgray"
+          background: "#F4F7FE",
+          boxShadow: 0,
+          borderBottom: "1px solid #ddd",
+          py: 1,
         }}
       >
         <Toolbar>
@@ -99,9 +65,42 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
           >
             <Icons.MenuSquare />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Name
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
+            <Box>
+              <Typography
+                variant="body2"
+                noWrap
+                component="div"
+                sx={{ color: "rgba(11, 17, 52, 0.6)" }}
+              >
+                Hi, {isLoading ? "Loading..." : data?.data?.name},
+              </Typography>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ color: "primary.main" }}
+              >
+                Welcome to Blood & Connect!
+              </Typography>
+            </Box>
+            <Stack direction="row" gap={3}>
+              <Badge badgeContent={1} color="primary">
+                <IconButton sx={{ background: "#ffffff" }}>
+                  <Icons.NotificationOutline />
+                </IconButton>
+              </Badge>
+              <Avatar alt={data?.name} src={data?.profilePhoto} />
+              <Icons.NameOutline />
+            </Stack>
+          </Box>
         </Toolbar>
       </AppBar>
       <Box
@@ -126,7 +125,7 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
             },
           }}
         >
-          {drawer}
+          <DashboardSideBar />
         </Drawer>
         <Drawer
           variant="permanent"
@@ -139,7 +138,7 @@ export default function DashboardDrawer({ children }: ChildrenProps) {
           }}
           open
         >
-          {drawer}
+          <DashboardSideBar />
         </Drawer>
       </Box>
       <Box

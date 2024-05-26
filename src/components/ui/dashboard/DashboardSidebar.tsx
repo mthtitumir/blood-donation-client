@@ -3,19 +3,18 @@ import Image from "next/image";
 import assets from "@/assets";
 import Link from "next/link";
 import { UserRole } from "@/types";
-import { getUserInfo } from "@/services/auth.services";
 import { useEffect, useState } from "react";
 import { DrawerItems } from "@/utils/DrawerItems";
 import SidebarItem from "./SidebarItem";
+import { useAppSelector } from "@/redux/hooks";
+import { useCurrentUser } from "@/redux/features/auth/authSlice";
 
 const DashboardSideBar = () => {
-  const [userRole, setUserRole] = useState("");
-
+  const [userRole, setUserRole] = useState<string | undefined>(undefined);
+  const user = useAppSelector(useCurrentUser);
   useEffect(() => {
-    const { role } = getUserInfo() as any;
-    setUserRole(role);
-  }, []);
-
+    setUserRole(user?.role);
+  }, [user]);
   return (
     <Box>
       <Stack
