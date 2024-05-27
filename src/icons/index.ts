@@ -4,7 +4,7 @@ import { LuMenuSquare, LuDroplets } from "react-icons/lu";
 import { FaCircle, FaUsers } from "react-icons/fa";
 import { FaGlassWater, FaVirusCovid } from "react-icons/fa6";
 import { BiSolidDonateBlood } from "react-icons/bi"
-import { BsFilterSquare, BsDropletHalf } from "react-icons/bs";
+import { BsFilterSquare, BsDropletHalf, BsDatabaseFillX } from "react-icons/bs";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -29,6 +29,6 @@ export const Icons = {
     DropHalf: BsDropletHalf,
     DropDouble: LuDroplets,
     Tick: SiTicktick,
-    Cross: RxCrossCircled
-
+    Cross: RxCrossCircled,
+    NoData: BsDatabaseFillX
 }

@@ -4,9 +4,23 @@ const requestsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllRequests: builder.query({
       query: (params) => ({
-        url: "/requests",
+        url: "/request",
         method: "GET",
         params,
+      }),
+      providesTags: ["requests"]
+    }),
+    getMyRequests: builder.query({
+      query: () => ({
+        url: "/request/my-requests",
+        method: "GET"
+      }),
+      providesTags: ["requests"]
+    }),
+    getRequestsToMe: builder.query({
+      query: () => ({
+        url: "/request/requests-to-me",
+        method: "GET",
       }),
       providesTags: ["requests"]
     }),
@@ -21,4 +35,4 @@ const requestsApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddRequestMutation, useGetAllRequestsQuery } = requestsApi;
+export const { useAddRequestMutation, useGetMyRequestsQuery, useGetRequestsToMeQuery, useGetAllRequestsQuery } = requestsApi;
