@@ -10,7 +10,7 @@ import { usePathname, useRouter } from "next/navigation";
 const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
+  // console.log(pathname);
   
   const user = useUserInfo();
 

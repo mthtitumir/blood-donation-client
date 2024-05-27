@@ -19,7 +19,7 @@ export const getUserInfo = () => {
         const decodedData: any = verifyToken(authToken);
         return {
             ...decodedData,
-            role: decodedData?.role?.toLowerCase(),
+            role: decodedData?.role,
         };
     } else {
         return '';

@@ -1,5 +1,5 @@
+import { TUserProfile } from "@/types";
 import { baseApi } from "../../api/baseApi";
-import { TUser } from "../auth/authSlice";
 
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -27,7 +27,7 @@ const userApi = baseApi.injectEndpoints({
       providesTags: ["user"]
     }),
     updateUser: builder.mutation({
-      query: ({id, updatedUserData}: {id: string, updatedUserData: Partial<TUser>}) => ({
+      query: ({id, updatedUserData}: {id: string, updatedUserData: Partial<TUserProfile>}) => ({
         url: `/user/${id}`,
         method: "PATCH",
         body: updatedUserData,

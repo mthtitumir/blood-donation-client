@@ -144,8 +144,8 @@ export default function DashboardDrawer({
         component="main"
         sx={{
           flexGrow: 1,
-          p: 1,
-          mt: 4,
+          p: 2,
+          mt: 2,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >

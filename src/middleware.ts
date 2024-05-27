@@ -15,7 +15,7 @@ const commonPrivateRoutes = [
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
     const token = cookies().get('accessToken')?.value;
-    console.log(token);
+    // console.log(token);
     
     if (!token) {
         if (AuthRoutes.includes(pathname)) {

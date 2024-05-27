@@ -10,6 +10,7 @@ type TInputProps = {
   sx?: SxProps;
   placeholder?: string;
   required?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 };
 
 const MyInput = ({
@@ -20,6 +21,7 @@ const MyInput = ({
   fullWidth,
   sx,
   required,
+  onChange
 }: TInputProps) => {
   const { control } = useFormContext();
   return (
@@ -39,6 +41,10 @@ const MyInput = ({
           required={required}
           error={!!error?.message}
           helperText={error?.message}
+          onChange={(e) => {
+            field.onChange(e);
+            if (onChange) onChange(e);
+          }}
         />
       )}
     />

@@ -27,7 +27,7 @@ export const DrawerItems = (role: UserRole): DrawerItem[] => {
          path: `change-password`,
          icon: Icons.Password,
       },
-   ];
+   ];   
 
    switch (role) {
       case Role.SUPER_ADMIN:
