@@ -11,8 +11,8 @@ const Query = () => {
     },
   };
   return (
-    <Container sx={{ my: 8 }}>
-      <Grid container alignItems="center" justifyContent="space-evenly">
+    <Container sx={{ my: 12 }}>
+      <Grid container alignItems="center" justifyContent="space-evenly" rowGap={3}>
         <Grid
           container
           item

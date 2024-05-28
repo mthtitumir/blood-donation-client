@@ -53,8 +53,8 @@ const HeroSection = () => {
               hero in someone’s life.
             </Typography>
             <Box sx={{ display: "flex", gap: 2, justifyContent: "end" }}>
-              <Button>Donate</Button>
-              <Button variant="outlined">Get Blood Now</Button>
+              <Button variant="outlined">Donate</Button>
+              <Button>Get Blood Now</Button>
             </Box>
           </Box>
         </Grid>

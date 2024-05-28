@@ -47,7 +47,7 @@ const AboutUs = () => {
               to get involved, or need more information, feel free to reach out
               to us.
             </Typography>
-            <Button>More Info</Button>
+            <Button sx={{mb: {xs: 2, md: 0}}}>More Info</Button>
           </Box>
         </Grid>
         <Grid item xs={12} sm={4}>

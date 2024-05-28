@@ -10,6 +10,7 @@ import { CgProfile } from "react-icons/cg";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { SiTicktick } from "react-icons/si";
 import { RxCrossCircled } from "react-icons/rx";
+import { PiUserCircleThin } from "react-icons/pi";
 export const Icons = {
     BloodOutlined: MdOutlineBloodtype,
     BloodFill: MdBloodtype,
@@ -30,5 +31,6 @@ export const Icons = {
     DropDouble: LuDroplets,
     Tick: SiTicktick,
     Cross: RxCrossCircled,
-    NoData: BsDatabaseFillX
+    NoData: BsDatabaseFillX,
+    UserProfile: PiUserCircleThin,
 }

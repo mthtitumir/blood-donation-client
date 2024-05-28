@@ -7,7 +7,7 @@ const OurImpact = () => {
     <Box
       my={5}
       sx={{
-        // position: 'relative',
+        position: 'relative',
         height: '400px',
         display: 'flex',
         alignItems: 'center',
@@ -22,8 +22,8 @@ const OurImpact = () => {
         //   bottom: 0
           backgroundImage: 'url("https://www.codeur.com/tuto/wp-content/uploads/2021/12/diaporama-image.jpg")',
           backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          opacity: 0.7,
+          // background: url(../images/backgroundImage.jpg) no-repeat center center fixed;
+          opacity: 0.1,
           zIndex: -1,
         // },
       }}

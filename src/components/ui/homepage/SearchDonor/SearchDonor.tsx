@@ -12,11 +12,10 @@ const SearchDonor = () => {
           component="h1"
           fontWeight={600}
           textAlign="center"
-          my={3}
         >
           Find A Donor
         </Typography>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, my: 3 }}>
           <Grid
             container
             spacing={2}
@@ -24,12 +23,19 @@ const SearchDonor = () => {
             {[1, 2, 3, 4, 5, 6, 7, 8].map((data) => (
               <Grid item key={data} xs={12} sm={3}>
                 <Box
+                component={Link}
+                href={`/donors/${"id"}`}
                   sx={{
                     display: "flex",
                     alignItems: "center",
                     gap: 1,
                     border: "1px solid #610834",
                     borderRadius: 2,
+                    // boxShadow: 1
+                    boxShadow: "5px 5px 5px #610834",
+                    '&:hover': {
+                      boxShadow: "5px 5px #610834",
+                    },
                   }}
                 >
                   <Box sx={{ p: 1, borderRight: "1px solid #610834" }}>
@@ -58,7 +64,7 @@ const SearchDonor = () => {
           </Grid>
         </Box>
         <Box display="flex" justifyContent="center">
-          <Button component={Link} href="/donors" sx={{ my: 2 }}>
+          <Button component={Link} href="/donors" sx={{ }}>
             All Donors
           </Button>
         </Box>
