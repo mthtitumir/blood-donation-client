@@ -1,7 +1,7 @@
 import { MdOutlineBloodtype, MdBloodtype, MdLocationPin, MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { GiMedicines } from "react-icons/gi"
 import { LuMenuSquare, LuDroplets } from "react-icons/lu";
-import { FaCircle, FaUsers } from "react-icons/fa";
+import { FaCircle, FaUsers, FaFacebookSquare, FaInstagram, FaTwitterSquare } from "react-icons/fa";
 import { FaGlassWater, FaVirusCovid } from "react-icons/fa6";
 import { BiSolidDonateBlood } from "react-icons/bi"
 import { BsFilterSquare, BsDropletHalf, BsDatabaseFillX } from "react-icons/bs";
@@ -33,4 +33,7 @@ export const Icons = {
     Cross: RxCrossCircled,
     NoData: BsDatabaseFillX,
     UserProfile: PiUserCircleThin,
+    Facebook: FaFacebookSquare,
+    Instagram: FaInstagram,
+    Twitter: FaTwitterSquare
 }

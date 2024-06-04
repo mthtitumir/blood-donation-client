@@ -5,6 +5,7 @@ const assets = {
         hero_banner: require("./images/Hero-Banner-Grad.png"),
         about_us_banner: require("./images/blood_hand.png"),
         impact_banner: require("./images/our_impact_banner.jpg"),
+        bd_map: require("./images/bangladesh-map.svg"),
     },
     social: {
         facebook: require("./social/facebook.png"),

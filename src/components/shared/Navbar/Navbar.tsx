@@ -55,6 +55,7 @@ function Navbar() {
     logoutUser(router);
     handleCloseUserMenu();
   };
+  
   const getLinkStyles = (href: string) => ({
     textDecoration: "none",
     color: pathname === href ? "#A8174E" : "inherit",

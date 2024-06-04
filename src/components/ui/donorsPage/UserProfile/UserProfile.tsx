@@ -69,7 +69,7 @@ const UserProfile = ({ rows, data }: TUserProfileProps) => {
                 gap={3}
               >
                 <Icons.NotificationOutline style={{ width: "" }} size={30} />
-                <Button component={Link} href="/request">
+                <Button component={Link} href={`/blood-request/${data?.userId}`}>
                   Request Blood
                 </Button>
               </Stack>

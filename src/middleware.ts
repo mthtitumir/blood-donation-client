@@ -62,14 +62,6 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/403', req.url)); // Assuming you have a 403 error page
 }
 
-// Example token decoding function
-function decodeToken(token: string) {
-    // Implement your token decoding logic here
-    // For example, using jwt-decode library
-    // return jwtDecode(token);
-    return { role: Role.USER }; // Mock return
-}
-
 export const config = {
-    matcher: ['/dashboard/:page*'],
+    matcher: ['/dashboard/:page*', '/blood-request'],
 };

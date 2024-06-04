@@ -26,13 +26,21 @@ const requestsApi = baseApi.injectEndpoints({
     }),
     addRequest: builder.mutation({
       query: (requestsData) => ({
-        url: `/requests`,
+        url: `/request`,
         method: "POST",
         body: requestsData
+      }),
+      invalidatesTags: ["requests"]
+    }), 
+    updateRequest: builder.mutation({
+      query: ({id, statusData}: {id: string|undefined, statusData: {requestStatus: 'PENDING'|'ACCEPTED'|'REJECTED'}}) => ({
+        url: `/request/${id}/update-status`,
+        method: "PATCH",
+        body: statusData
       }),
       invalidatesTags: ["requests"]
     }), 
   }),
 });
 
-export const { useAddRequestMutation, useGetMyRequestsQuery, useGetRequestsToMeQuery, useGetAllRequestsQuery } = requestsApi;
+export const { useAddRequestMutation, useGetMyRequestsQuery, useGetRequestsToMeQuery, useGetAllRequestsQuery, useUpdateRequestMutation } = requestsApi;
