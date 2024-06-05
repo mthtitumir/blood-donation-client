@@ -6,6 +6,7 @@ const assets = {
         about_us_banner: require("./images/blood_hand.png"),
         impact_banner: require("./images/our_impact_banner.jpg"),
         bd_map: require("./images/bangladesh-map.svg"),
+        wave: require("./images/wave.svg"),
     },
     social: {
         facebook: require("./social/facebook.png"),

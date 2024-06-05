@@ -43,12 +43,13 @@ export default function DashboardDrawer({
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
+      {/* navbar of dashboard  */}
       <AppBar
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          background: "#F4F7FE",
+          background: "#FFFDD0",
           boxShadow: 0,
           borderBottom: "1px solid #ddd",
           py: 1,
@@ -56,13 +57,12 @@ export default function DashboardDrawer({
       >
         <Toolbar>
           <IconButton
-            color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <Icons.MenuSquare />
+            <Icons.MenuSquare size={30} />
           </IconButton>
           <Box
             sx={{
@@ -85,7 +85,10 @@ export default function DashboardDrawer({
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ color: "primary.main" }}
+                sx={{
+                  color: "primary.main",
+                  display: { xs: "none", sm: "block" },
+                }}
               >
                 Welcome to Blood & Connect!
               </Typography>
@@ -97,11 +100,11 @@ export default function DashboardDrawer({
                 </IconButton>
               </Badge>
               <Avatar alt={data?.name} src={data?.profilePhoto} />
-              <Icons.NameOutline />
             </Stack>
           </Box>
         </Toolbar>
       </AppBar>
+      {/* drawer sidebar  */}
       <Box
         component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
@@ -121,6 +124,7 @@ export default function DashboardDrawer({
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              bgcolor: "#FFFDD0",
             },
           }}
         >
@@ -133,6 +137,7 @@ export default function DashboardDrawer({
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              bgcolor: "#FFFDD0",
             },
           }}
           open
@@ -140,6 +145,7 @@ export default function DashboardDrawer({
           <DashboardSideBar />
         </Drawer>
       </Box>
+      {/* children component  */}
       <Box
         component="main"
         sx={{
@@ -147,6 +153,7 @@ export default function DashboardDrawer({
           p: 2,
           mt: 2,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          bgcolor: "white",
         }}
       >
         <Toolbar />

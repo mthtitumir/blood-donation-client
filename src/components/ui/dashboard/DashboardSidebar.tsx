@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { DrawerItems } from "@/utils/DrawerItems";
 import SidebarItem from "./SidebarItem";
 import { getUserInfo } from "@/services/auth.service";
+import { Icons } from "@/icons";
 
 const DashboardSideBar = () => {
   const [userRole, setUserRole] = useState<string | undefined>(undefined);
@@ -28,7 +29,8 @@ const DashboardSideBar = () => {
         component={Link}
         href="/"
       >
-        <Image src={assets.images.logo} width={40} height={40} alt="logo" />
+        {/* <Image src={assets.images.logo} width={40} height={40} alt="logo" style={{}} /> */}
+        <Icons.DropDouble size={20} />
         <Typography
           variant="h6"
           component="h1"

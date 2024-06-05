@@ -19,6 +19,14 @@ const userApi = baseApi.injectEndpoints({
       }),
       providesTags: ["user"]
     }),
+    getAllDonor: builder.query({
+      query: (params) => ({
+        url: "/user/all-donors",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["user"]
+    }),
     getMe: builder.query({
       query: () => ({
         url: "/user/me",
@@ -34,6 +42,22 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"]
     }),
+    updateUserRole: builder.mutation({
+      query: ({id, updatedUserRoleData}: {id: string, updatedUserRoleData: {role: string}}) => ({
+        url: `/user/${id}/role`,
+        method: "PATCH",
+        body: updatedUserRoleData,
+      }),
+      invalidatesTags: ["user"]
+    }),
+    updateUserStatus: builder.mutation({
+      query: ({id, updatedUserStatusData}: {id: string, updatedUserStatusData: {isBanned: boolean}}) => ({
+        url: `/user/${id}/status`,
+        method: "PATCH",
+        body: updatedUserStatusData,
+      }),
+      invalidatesTags: ["user"]
+    }),
     deleteUser: builder.mutation({
       query: ({id}: {id: string}) => ({
         url: `/user/${id}`,
@@ -44,4 +68,4 @@ const userApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateUserMutation, useGetAllUserQuery, useGetMeQuery, useUpdateUserMutation, useDeleteUserMutation } = userApi;
+export const { useCreateUserMutation, useGetAllUserQuery, useGetAllDonorQuery, useGetMeQuery, useUpdateUserMutation, useUpdateUserRoleMutation, useUpdateUserStatusMutation, useDeleteUserMutation } = userApi;
