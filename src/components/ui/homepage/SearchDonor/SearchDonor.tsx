@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const SearchDonor = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/user`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/user/all-donors`);
   // console.log(res);
   const { data } = await res.json();
   return (

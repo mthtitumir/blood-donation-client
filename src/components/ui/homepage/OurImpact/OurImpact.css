@@ -1,0 +1,8 @@
+.our-impact-container{
+    background-image: url("../../../../assets/images/our_impact_banner.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 120px 0;
+    height: 400px;
+    /* opacity: 0.5; */
+}

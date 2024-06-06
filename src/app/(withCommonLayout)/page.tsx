@@ -4,7 +4,7 @@ import HeroSection from "@/components/ui/homepage/HeroSection/HeroSection";
 import OurImpact from "@/components/ui/homepage/OurImpact/OurImpact";
 import Query from "@/components/ui/homepage/Query/Query";
 import SearchDonor from "@/components/ui/homepage/SearchDonor/SearchDonor";
-export default function Home() {
+const HomePage = () => {
   return (
     <>
       <HeroSection />
@@ -16,3 +16,5 @@ export default function Home() {
     </>
   );
 }
+
+export default HomePage

@@ -1,10 +1,35 @@
-import assets from "@/assets";
-import { Box, Container } from "@mui/material";
-import impactBanner from '@/assets/images/our_impact_banner.jpg';
+import { Box, Container, Stack, Typography } from "@mui/material";
+import "./OurImpact.css";
 
 const OurImpact = () => {
   return (
-    <Box
+    <Stack className="our-impact-container">
+      <Stack
+        sx={{
+          height: "400px",
+          bgcolor: "black",
+          opacity: 0.7,
+          width: "100%",
+        }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Typography
+          variant="h3"
+          component="h1"
+          sx={{ zIndex: 1000, color: "white", opacity: 1 }}
+        >
+          Helping 2000+ People
+        </Typography>
+      </Stack>
+    </Stack>
+  );
+};
+
+export default OurImpact;
+
+{
+  /* <Box
       my={5}
       sx={{
         position: 'relative',
@@ -31,8 +56,5 @@ const OurImpact = () => {
       <Container>
         hello
       </Container>
-    </Box>
-  );
-};
-
-export default OurImpact;
+    </Box> */
+}

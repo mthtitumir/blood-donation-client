@@ -1,7 +1,5 @@
-import { Icons } from "@/icons";
 import { queryItems } from "@/utils/QueryItems";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { ReactNode } from "react";
 
 const Query = () => {
   const iconStyle = {

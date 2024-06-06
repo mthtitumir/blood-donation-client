@@ -13,7 +13,7 @@ const DonorListPage = async ({ searchParams }: any) => {
   if (searchTerm) queryParams.set("searchTerm", searchTerm);
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/user?${queryParams.toString()}`
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/user/all-donors?${queryParams.toString()}`
   );
   const { data } = await res.json();
 

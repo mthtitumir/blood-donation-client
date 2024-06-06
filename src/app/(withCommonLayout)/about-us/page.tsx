@@ -1,4 +1,3 @@
-import assets from "@/assets";
 import { bloodDonationObjectives } from "@/constants";
 import { Icons } from "@/icons";
 import {
@@ -12,6 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+
 const AboutUsPage = () => {
   return (
     <Container>

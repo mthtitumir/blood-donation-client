@@ -13,9 +13,8 @@ import { registerUser } from "@/services/serverActions/registerUser";
 import toast from "react-hot-toast";
 import { loginUser } from "@/services/serverActions/loginUser";
 import { storeUserInfo } from "@/services/auth.service";
-import { TUser } from "@/types";
 
-export const defaultValues = {
+const defaultValues = {
   name: "",
   email: "",
   password: "",
@@ -37,7 +36,7 @@ const RegisterPage = () => {
         toast.success(res?.message);
         const result = await loginUser({
           password: values.password,
-          email: values.patient.email,
+          email: values.email,
         });
         if (result?.data?.accessToken) {
           storeUserInfo({ accessToken: result?.data?.accessToken });
