@@ -55,7 +55,7 @@ function Navbar() {
     logoutUser(router);
     handleCloseUserMenu();
   };
-  
+
   const getLinkStyles = (href: string) => ({
     textDecoration: "none",
     color: pathname === href ? "#A8174E" : "inherit",
@@ -68,142 +68,153 @@ function Navbar() {
   });
 
   return (
-    <Container>
-      <Stack
-        py={2}
-        direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-      >
-        {/* logo visible in md  */}
+    <Box sx={{ 
+      boxShadow: "5px 1px 5px #610834",
+      mb: 1
+    }}>
+      <Container>
         <Stack
+          py={2}
           direction="row"
-          gap={1}
           alignItems="center"
-          sx={{ display: { xs: "none", md: "flex" } }}
+          justifyContent="space-between"
         >
-          <Box>
-            <Icons.DropDouble size={20} color="#A8174E" />
-          </Box>
-          <Typography variant="h5" component="h1" fontWeight={600}>
-            Bl
-            <Box component="span" color={"primary.main"}>
-              oo
-            </Box>
-            d & Connect
-          </Typography>
-        </Stack>
-        {/* menu-> visible in xs   */}
-        <Box sx={{ display: { xs: "flex", md: "none" } }}>
-          <Icons.MenuSquare size={27} onClick={handleOpenNavMenu} />
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchorElNav}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "left",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
-            }}
-            open={Boolean(anchorElNav)}
-            onClose={handleCloseNavMenu}
-            sx={{
-              display: { xs: "block", md: "none" },
-            }}
+          {/* logo visible in md  */}
+          <Stack
+            direction="row"
+            gap={1}
+            alignItems="center"
+            sx={{ display: { xs: "none", md: "flex" } }}
           >
-            {pages2.map((page) => (
-              <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+            <Box>
+              <Icons.DropDouble size={20} color="#A8174E" />
+            </Box>
+            <Typography variant="h5" component="h1" fontWeight={600}>
+              Bl
+              <Box component="span" color={"primary.main"}>
+                oo
+              </Box>
+              d & Connect
+            </Typography>
+          </Stack>
+          {/* menu-> visible in xs   */}
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Icons.MenuSquare size={27} onClick={handleOpenNavMenu} />
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages2.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography
+                    component={Link}
+                    href={page.path}
+                    sx={getLinkStyles(page.path)}
+                  >
+                    {page.name}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          {/* logo visible in xs  */}
+          <Stack
+            direction="row"
+            gap={1}
+            alignItems="center"
+            sx={{ display: { xs: "flex", md: "none" } }}
+          >
+            <Box>
+              <Icons.DropDouble size={16} color="#A8174E" />
+            </Box>
+            <Typography variant="h6" component="h1" fontWeight={600}>
+              Bl
+              <Box component="span" color={"primary.main"}>
+                oo
+              </Box>
+              d & Connect
+            </Typography>
+          </Stack>
+
+          {/* menu-> visible in md   */}
+          <Stack direction="row" alignItems="center" gap={5}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              gap={5}
+              sx={{ display: { xs: "none", md: "flex" } }}
+            >
+              {pages2.map((page) => (
                 <Typography
+                  key={page.name}
                   component={Link}
                   href={page.path}
                   sx={getLinkStyles(page.path)}
                 >
                   {page.name}
                 </Typography>
-              </MenuItem>
-            ))}
-          </Menu>
-        </Box>
-        {/* logo visible in xs  */}
-        <Stack
-          direction="row"
-          gap={1}
-          alignItems="center"
-          sx={{ display: { xs: "flex", md: "none" } }}
-        >
-          <Box>
-            <Icons.DropDouble size={16} color="#A8174E" />
-          </Box>
-          <Typography variant="h6" component="h1" fontWeight={600}>
-            Bl
-            <Box component="span" color={"primary.main"}>
-              oo
-            </Box>
-            d & Connect
-          </Typography>
-        </Stack>
-
-        {/* menu-> visible in md   */}
-        <Stack direction="row" alignItems="center" gap={5}>
-          <Stack
-            direction="row"
-            alignItems="center"
-            gap={5}
-            sx={{ display: { xs: "none", md: "flex" } }}
-          >
-            {pages2.map((page) => (
-              <Typography
-                key={page.name}
-                component={Link}
-                href={page.path}
-                sx={getLinkStyles(page.path)}
-              >
-                {page.name}
-              </Typography>
-            ))}
+              ))}
+            </Stack>
+            {user?.id ? (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Profile">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Icons.UserProfile size={30} color="black" />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  <MenuItem key={settings[0]} onClick={handleCloseUserMenu}>
+                    <Typography
+                      textAlign="center"
+                      component={Link}
+                      href="/dashboard/profile"
+                    >
+                      {settings[0]}
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem key={settings[1]} onClick={handleLogout}>
+                    <Typography textAlign="center">{settings[1]}</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <Button component={Link} href="/login">
+                Login
+              </Button>
+            )}
           </Stack>
-          {user?.id ? (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Profile">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Icons.UserProfile size={30} color="black"/>
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem key={settings[0]} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" component={Link} href="/dashboard/profile">{settings[0]}</Typography>
-                </MenuItem>
-                <MenuItem key={settings[1]} onClick={handleLogout}>
-                  <Typography textAlign="center">{settings[1]}</Typography>
-                </MenuItem>
-              </Menu>
-            </Box>
-          ) : (
-            <Button component={Link} href="/login">
-              Login
-            </Button>
-          )}
         </Stack>
-      </Stack>
-    </Container>
+      </Container>
+    </Box>
   );
 }
 export default Navbar;

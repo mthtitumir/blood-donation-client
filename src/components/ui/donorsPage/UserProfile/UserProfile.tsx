@@ -22,6 +22,7 @@ type TUserProfileProps = {
   data: TUserProfile;
 };
 const UserProfile = ({ rows, data }: TUserProfileProps) => {
+  
   return (
     <Grid container minHeight={"300px"} spacing={2}>
       <Grid item xs={12} sm={9}>
@@ -83,7 +84,7 @@ const UserProfile = ({ rows, data }: TUserProfileProps) => {
               <TableBody>
                 {rows.map((row) => (
                   <TableRow
-                    key={row.value}
+                    key={row?.value}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell width="40%" component="td" align="right">
